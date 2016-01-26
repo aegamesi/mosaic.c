@@ -30,8 +30,10 @@ int isPowerOfTwo(unsigned int x) {
 
 // denero functions
 void image_paste(int left, int top, int w, int h, int tint) {
-	for(int x = left; x < left + w; x++) {
-		for(int y = top; y < top + h; y++) {
+	int x, y;
+
+	for(x = left; x < left + w; x++) {
+		for(y = top; y < top + h; y++) {
 			int i = get_pixel(((x - left) * width) / w, ((y - top) * height) / h, 0);
 			i = i / 3 + 85; // contrast (x3)
 			i = (i * tint * 4) / (255 * 3); // boost brightness too
@@ -42,18 +44,23 @@ void image_paste(int left, int top, int w, int h, int tint) {
 
 int image_average(int left, int top, int w, int h) {
 	long long int total = 0;
-	for(int x = left; x < left + w; x++) {
-		for(int y = top; y < top + h; y++) {
+	int x, y;
+
+	for(x = left; x < left + w; x++) {
+		for(y = top; y < top + h; y++) {
 			total += get_pixel(x, y, 0);
 		}
 	}
+
 	return total / (w * h);
 }
 
 int image_squares(int left, int top, int w, int h, int avg) {
 	long long int total = 0;
-	for(int x = left; x < left + w; x++) {
-		for(int y = top; y < top + h; y++) {
+	int x, y;
+
+	for(x = left; x < left + w; x++) {
+		for(y = top; y < top + h; y++) {
 			int pix = (avg - get_pixel(x, y, 0));
 			total += pix * pix;
 		}
